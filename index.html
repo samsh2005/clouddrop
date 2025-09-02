@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Drop Vending</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <img src="./assets/logo.png" alt="Cloud Drop Logo" class="logo hero-logo floating">
+      <h1 class="hero-title">Elevate Your Venue</h1>
+      <p class="hero-sub">Modern vending. Seamless experience. Passive revenue.</p>
+      <div class="cta-buttons">
+        <a href="#contact">Become a Partner</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+<section id="about">
+  <div class="container">
+    <h2 style="text-align: center; margin-bottom: 34px;">What We Do</h2>
+
+    <div class="what-we-do-grid">
+      <div class="what-card">
+        <p><strong>Cloud Drop Vending</strong> brings sleek, wall-mounted vape vending machines to 19+ nightlife venues — helping clubs retain guests, drive revenue, and stay modern without staffing or shelf space.</p>
+      </div>
+
+      <div class="what-card">
+        <p>Each machine is futuristic and compact, blending perfectly into high-energy environments and designed for quick, convenient access. Because age verification happens at the door, our machines are streamlined for high-flow use.</p>
+      </div>
+
+      <div class="what-card">
+        <ul>
+          <li>🔧 Full setup, restocking, and maintenance</li>
+          <li>💸 10% passive revenue to your venue</li>
+          <li>🛠 Zero labor required from staff</li>
+          <li>🚀 A seamless upgrade to your club’s experience</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- callout keeps your short sentence but makes layout feel intentional -->
+    <div class="what-callout">
+      We handle everything — you collect your cut.
+    </div>
+  </div>
+</section>
+  <!-- Machine Section -->
+  <section id="machine">
+    <div class="container" style="text-align: center;">
+      <!-- New Title -->
+      <h2 class="machine-title">Our Machines</h2>
+
+      <div class="machine-wrap">
+        <img src="./assets/vending.png" alt="Vending Machine" class="machine-img">
+        <div class="dimension-label dim-h">H: 40.5"</div>
+        <div class="dimension-label dim-w">W: 23.6"</div>
+        <div class="dimension-label dim-d">D: 10.2"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Partner With Us</h2>
+      <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
+      <form action="#" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="text" name="venue" placeholder="Club or Venue Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <textarea name="message" placeholder="Message or Questions"></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>Cloud Drop Vending © 2025. All rights reserved.</p>
+  </footer>
+
+  <!-- Vendor JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Your JS -->
+  <script src="script.js" defer></script>
+</body>
+</html>
