@@ -78,20 +78,30 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <h2>Partner With Us</h2>
-      <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
-      <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required />
-        <input type="text" name="venue" placeholder="Club or Venue Name" required />
-        <input type="email" name="email" placeholder="Email Address" required />
-        <textarea name="message" placeholder="Message or Questions"></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  </section>
+ <section id="contact">
+  <div class="container">
+    <h2>Partner With Us</h2>
+    <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
 
+    <form id="contact-form" action="https://formspree.io/f/xkgvybdb" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required />
+  <input type="text" name="venue" placeholder="Club or Venue Name" required />
+  <input type="email" name="email" placeholder="Email Address" required />
+  <input type="tel" name="phone" placeholder="Phone (optional)" />
+  <textarea name="message" placeholder="Message or Questions (optional)" rows="5"></textarea>
+
+  <!-- helpful meta fields -->
+  <input type="hidden" name="form" value="CloudDrop Contact" />
+  <input type="hidden" name="_subject" value="New message from Cloud Drop site" />
+
+  <!-- anti-spam honeypot (humans leave this empty) -->
+  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <button type="submit">Submit</button>
+  <div id="form-status" aria-live="polite" style="margin-top:12px;"></div>
+</form>
+  </div>
+</section>
   <footer>
     <p>Cloud Drop Vending © 2025. All rights reserved.</p>
   </footer>

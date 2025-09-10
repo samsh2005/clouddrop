@@ -291,3 +291,9 @@ footer{
   50%     { width: 400px; opacity: 1; }
 }
 
+#form-status {
+  font-size: .95rem;
+  color: #cfd8dd;
+  min-height: 1.2em;
+  text-shadow: 0 0 12px rgba(126,224,247,.25);
+}
