@@ -483,3 +483,356 @@ footer{
 @media (max-width:900px){
   .machine-grid{ grid-template-columns:1fr; }
 }
+/* ===== Contract card look ===== */
+.contract-card {
+  background: rgba(16,18,23,.9);
+  border: 1px solid rgba(126,224,247,.22);
+  border-radius: 18px;
+  padding: 28px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.45), 0 0 18px rgba(126,224,247,.12);
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.contract-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px dashed rgba(126,224,247,.25);
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+}
+
+.contract-brand {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.contract-logo {
+  width: 48px; height: 48px; object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(126,224,247,.35));
+}
+.contract-title {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.contract-subtitle {
+  margin: 2px 0 0 0; color: #9ab4c2; font-size: .95rem;
+}
+
+.contract-meta { text-align: right; font-size: .95rem; color: #c7d6de; }
+.contract-meta span { color: #85cfe6; }
+
+.contract-form { display: grid; gap: 16px; }
+
+.contract-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 14px;
+}
+@media (max-width: 700px) {
+  .contract-grid { grid-template-columns: 1fr; }
+}
+
+.field span { display:block; font-size:.95rem; color:#bcd0da; margin-bottom:6px; }
+.field input, .field textarea {
+  width: 100%;
+  padding: 12px 12px;
+  background: #111419;
+  border: 1px solid #3a4a55;
+  color: #e8f6ff;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.contract-body {
+  margin-top: 6px;
+  background: rgba(12,14,18,.6);
+  border: 1px solid rgba(126,224,247,.15);
+  border-radius: 14px;
+  padding: 16px 18px;
+  line-height: 1.75;
+}
+.contract-body h3 { margin: 6px 0 10px 0; }
+.contract-clauses {
+  margin: 10px 0 6px 22px;
+}
+.contract-clauses li { margin: 8px 0; }
+
+.contract-note { color:#9ab4c2; font-size:.95rem; }
+
+.agree-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  border-top: 1px dashed rgba(126,224,247,.15);
+  padding-top: 12px; margin-top: 2px;
+}
+
+.signature-block {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  align-items: end;
+}
+@media (max-width: 840px) {
+  .signature-block { grid-template-columns: 1fr; }
+}
+.sig-label { margin: 0 0 6px 0; color:#cfefff; }
+.sig-pad {
+  background: #0b0d12;
+  border: 1px solid #3a4a55;
+  border-radius: 10px;
+  overflow: hidden;
+}
+#sigPad { width: 100%; height: 180px; display:block; }
+
+.sig-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:8px; }
+
+.sig-lines .sig-line { margin-top: 18px; }
+.sig-lines .line { display:block; height:1px; background:#3a4a55; margin-bottom:6px; }
+
+.submit-row { display:flex; gap:12px; align-items:center; margin-top: 8px; }
+.status { min-height: 20px; font-size:.95rem; }
+
+/* Buttons */
+.btn { padding:10px 14px; border-radius:10px; cursor:pointer; }
+.btn.primary {
+  background:#7ee0f7; color:#0e0e10; border:none; font-weight:700;
+}
+.btn.ghost {
+  background:transparent; color:#e8f6ff; border:1px solid #3a4a55;
+}
+
+/* Small helpers for bindings */
+.bind-fallback { opacity:.9; }
+#prev-phone-wrap:empty { display:none; }
+
+/* Print: focus on the card like a real paper sheet */
+@media print {
+  body { background:#fff; color:#000; }
+  .stars, header, footer, #hero, #about, #machine, #contact { display:none !important; }
+  #contract { padding: 0; }
+  .contract-card {
+    box-shadow: none; backdrop-filter:none;
+    border: 1px solid #000; border-radius: 0; background:#fff; color:#000;
+  }
+  .contract-header, .contract-body, .agree-row,
+  .signature-block, .submit-row { color:#000; }
+  .btn, .status { display:none !important; } /* hide buttons on print */
+  .sig-pad { border:1px solid #000; }
+}
+/* Hide contract by default */
+.contract-locked { display: none; }
+
+/* Button */
+.btn-venue {
+  padding: 12px 22px; border-radius: 40px; border:1px solid #7ee0f7;
+  background: transparent; color:#7ee0f7; cursor:pointer; font-weight:600;
+}
+.btn-venue:hover { background:#7ee0f7; color:#0e0e10; box-shadow:0 0 18px #7ee0f7; }
+
+/* Modal */
+.modal.hidden { display:none; }
+.modal { position: fixed; inset: 0; z-index: 9999; }
+.modal-backdrop {
+  position:absolute; inset:0; background:rgba(0,0,0,.6); backdrop-filter: blur(2px);
+}
+.modal-card {
+  position: absolute; left:50%; top:50%; transform: translate(-50%,-50%);
+  width: min(92vw, 420px); background:#14141a; border:1px solid rgba(126,224,247,.22);
+  border-radius: 14px; padding: 18px; box-shadow: 0 0 24px rgba(126,224,247,.25);
+}
+.modal-input {
+  width:100%; padding:12px; border-radius:10px; border:1px solid #444;
+  background:#0e0e10; color:#fff;
+}
+.modal-btn {
+  padding:10px 16px; border-radius:10px; border:1px solid #555; background:transparent; color:#fff; cursor:pointer;
+}
+.modal-btn.primary { border-color:#7ee0f7; color:#7ee0f7; }
+.modal-btn.primary:hover { background:#7ee0f7; color:#0e0e10; }
+.modal-msg { min-height: 18px; margin-top: 8px; color:#ffb4a8; font-size:.95rem; }
+/* ===== Design tokens (subtle, consistent look) ===== */
+:root{
+  --bg:#0e0e10;
+  --panel:#11151b;
+  --panel-soft:#0f1319;
+  --text:#eef6fb;
+  --muted:#b6c6d2;
+  --brand:#7ee0f7;
+  --brand-2:#4bc0d9;
+  --line:rgba(255,255,255,.08);
+  --glow:0 0 18px rgba(126,224,247,.25);
+  --radius-lg:16px;
+  --radius-md:12px;
+  --shadow-soft:0 10px 26px rgba(0,0,0,.45);
+}
+
+/* Base improvements */
+body{ color:var(--text); background:var(--bg); }
+.container{ max-width: 1100px; } /* tighter = more premium */
+section{ padding: clamp(48px, 7vw, 80px) 5vw; }
+
+/* Typography scale */
+h1{ font-size: clamp(2.4rem, 6vw, 3.2rem); letter-spacing:.2px; }
+h2{ font-size: clamp(1.6rem, 3.6vw, 2.1rem); letter-spacing:.2px; }
+p, li{ color:var(--muted); }
+
+/* Logo/hero polish */
+.logo.hero-logo{ width:min(260px, 42vw); filter: drop-shadow(0 0 16px rgba(126,224,247,.45)); }
+.hero-title{ margin:.4rem 0 .5rem; text-shadow:0 0 22px rgba(126,224,247,.22); }
+.hero-sub{ color:#c7d6de; max-width:60ch; margin:0 auto; }
+
+/* Buttons */
+.cta-buttons a,.btn,.btn-venue{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px; padding:12px 22px; border-radius:40px; font-weight:650;
+  border:1px solid var(--brand); color:var(--brand); background:transparent;
+  transition:transform .18s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+}
+.cta-buttons a:hover,.btn:hover,.btn-venue:hover{
+  background:var(--brand); color:#0e0e10; box-shadow:0 0 18px rgba(126,224,247,.75);
+  transform:translateY(-2px);
+}
+.cta-buttons a:active{ transform:none; box-shadow:0 0 12px rgba(126,224,247,.5); }
+
+/* Cards – unify look (about/what we do) */
+.what-card{
+  background: linear-gradient(180deg, rgba(18,22,28,.9), rgba(14,18,24,.9));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft), var(--glow);
+}
+.what-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(126,224,247,.28);
+  box-shadow: var(--shadow-soft), 0 0 26px rgba(126,224,247,.28);
+}
+.what-card p, .what-card li{ color:#d7e3ea; }
+
+/* About grid spacing & alignment */
+.what-we-do-grid{ gap:18px; align-items:start; }
+.what-card ul{ padding-left:1.1em; }
+
+/* Machine section: tidy title + image */
+.machine-title{
+  font-size: clamp(1.5rem, 3.2vw, 2rem);
+  text-align:center; margin:-6px 0 20px;
+  text-shadow:0 0 14px rgba(126,224,247,.25);
+}
+.machine-wrap{ display:inline-block; position:relative; }
+.machine-img{
+  width:min(380px, 70vw);
+  border-radius:12px; box-shadow: 0 14px 34px rgba(0,0,0,.5), 0 0 24px rgba(126,224,247,.22);
+  transition: transform .35s ease, box-shadow .35s ease;
+  image-rendering: -webkit-optimize-contrast;
+}
+.machine-wrap:hover .machine-img{ transform: perspective(700px) rotateY(8deg) scale(1.04); }
+.dimension-label{
+  border:1px solid rgba(126,224,247,.28); background:rgba(10,12,16,.8);
+  text-shadow:0 0 8px rgba(126,224,247,.3);
+}
+
+/* Forms – consistent inputs */
+input, textarea{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: var(--radius-md);
+  outline: none;
+}
+input:focus, textarea:focus{
+  border-color: rgba(126,224,247,.45);
+  box-shadow: 0 0 0 3px rgba(126,224,247,.15);
+}
+
+/* Contract/Portal cards reuse same visual language */
+.contract-card{
+  background: linear-gradient(180deg, rgba(15,18,24,.95), rgba(11,14,20,.95));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-soft), var(--glow);
+}
+.contract-header{ border-bottom: 1px dashed rgba(126,224,247,.2); padding-bottom:14px; margin-bottom:14px; }
+
+/* Footer subtler */
+footer{ color:#9fb1bd; border-top:1px solid var(--line); }
+
+/* Starfield: steady points, brighter streaks (but dimmer static stars) */
+.star{ opacity:.45; box-shadow: 0 0 4px #7ee0f7; } /* calmer static stars */
+.shooting-star{
+  background: linear-gradient(90deg, rgba(126,224,247,1), rgba(126,224,247,.0));
+  box-shadow: 0 0 18px rgba(126,224,247,.9), 0 0 28px rgba(126,224,247,.5);
+}
+
+/* Subtle reveal on scroll (if AOS missing, safe to ignore) */
+.reveal-up{ transform: translateY(8px); opacity: 0; transition: transform .4s ease, opacity .4s ease; }
+.reveal-up.in{ transform: none; opacity: 1; }
+
+/* Motion accessibility */
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition:none !important; }
+}
+
+/* Responsive niceties */
+@media (max-width: 720px){
+  .hero-sub{ padding: 0 6px; }
+  .cta-buttons a{ width:100%; max-width: 420px; }
+}
+/* ==== Unsquish overrides ==== */
+
+/* 1) Make the global container wider again */
+.container{
+  max-width: 1280px; /* was 1100px */
+}
+@media (min-width: 1500px){
+  .container{ max-width: 1400px; }
+}
+
+/* 2) Optional: super-wide containers for specific sections
+   Add class="wide" on a section's .container to opt-in */
+.container.wide{
+  max-width: 1500px;
+}
+
+/* 3) Give sections a touch more side padding on desktop */
+section{
+  padding-left: clamp(24px, 5vw, 72px);
+  padding-right: clamp(24px, 5vw, 72px);
+}
+
+/* 4) Loosen grids so cards can breathe */
+.what-we-do-grid{
+  gap: 22px; /* was 18 */
+}
+.what-card{
+  padding: 28px; /* was 24 */
+}
+
+/* 5) Machine grid: let it expand more naturally */
+.machine-grid{
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.machine-card{ min-width: 0; }
+
+/* 6) Hero copy can stretch a bit more on large screens */
+.hero-sub{
+  max-width: 70ch; /* was 60ch */
+}
+
+/* 7) Live gallery: bigger tiles on desktop */
+.live-gallery{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.live-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
