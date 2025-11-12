@@ -304,3 +304,68 @@
 
   els.forEach(el => io.observe(el));
 })();
+// AOS init (if you want to also use AOS attributes). Safe even if not used.
+if (window.AOS) AOS.init({ once: true, duration: 600 });
+
+// Reveal-on-scroll (matches the CSS .reveal-up / .stagger)
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{ threshold:.12 });
+
+document.querySelectorAll('.reveal-up, .stagger').forEach(el=>io.observe(el));
+
+// Sticky nav shadow class
+const nav = document.querySelector('.site-nav');
+if (nav) {
+  const set = () => nav.classList.toggle('scrolled', window.scrollY > 4);
+  set(); window.addEventListener('scroll', set, {passive:true});
+}
+
+// Floating Refund Help button micro-interactions (CSS handles most states)
+const refundBtn = document.getElementById('refund-help-btn');
+if (refundBtn) {
+  refundBtn.addEventListener('mousedown', () => refundBtn.style.transform = 'translateY(0) scale(0.98)');
+  refundBtn.addEventListener('mouseup',   () => refundBtn.style.transform = 'translateY(-2px) scale(1.04)');
+}
+
+// OPTIONAL: simple starfield generator (keeps your existing container)
+(function starfield(){
+  const root = document.getElementById('stars');
+  if (!root) return;
+  const count = Math.min(120, Math.floor(window.innerWidth/12));
+  for (let i=0;i<count;i++){
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random()*100 + 'vw';
+    s.style.top  = Math.random()*100 + 'vh';
+    s.style.opacity = (0.3 + Math.random()*0.5).toFixed(2);
+    root.appendChild(s);
+  }
+  // sporadic shooting stars
+  setInterval(()=>{
+    const ss = document.createElement('div');
+    ss.className = 'shooting-star';
+    ss.style.left = (50 + Math.random()*50) + 'vw';
+    ss.style.top  = (Math.random()*40) + 'vh';
+    root.appendChild(ss);
+    setTimeout(()=> ss.remove(), 1400);
+  }, 2000 + Math.random()*2000);
+})();
+// Show loading state on submit
+(function(){
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', () => {
+    const btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
+    btn.dataset.original = btn.textContent;
+    btn.textContent = 'Sending…';
+    btn.classList.add('loading');
+    btn.disabled = true;
+  });
+})();

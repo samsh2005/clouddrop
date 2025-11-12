@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Refund Request</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --aqua: rgba(126,224,247,.65);
+    --aqua-strong: rgba(126,224,247,.9);
+    --bg:#0b0b0b; 
+    --card:#111214; 
+    --text:#f2f6f7; 
+    --muted:#9aa0a6; 
+    --border:rgba(255,255,255,.08);
+  }
+
+  html,body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 20% -10%, rgba(126,224,247,.06), transparent 60%),
+      radial-gradient(900px 500px at 110% 20%, rgba(126,224,247,.04), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height:1.5;
+  }
+
+  .stage{ position:relative; min-height:100dvh; }
+  .wrap{ max-width:540px; margin:56px auto; padding:0 20px; position:relative; z-index:2; }
+
+  /* Card — tighter soft glow + subtle aqua edge */
+  .card{
+    background: linear-gradient(180deg, var(--card), #0f1012 60%);
+    border:1px solid var(--border);
+    border-radius:22px;
+    box-shadow:
+      0 10px 30px rgba(0,0,0,.55),
+      0 0 0 1px rgba(126,224,247,.10),
+      0 10px 24px rgba(126,224,247,.08);
+    overflow:hidden;
+    animation:fadeIn .7s ease-out;
+  }
+  @keyframes fadeIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
+
+  header{ padding:22px 26px 16px; border-bottom:1px solid var(--border); }
+  header h1{ margin:0; font-size:26px; font-weight:600; letter-spacing:.2px; color:var(--aqua-strong); }
+  header .sub{ font-size:13px; color:var(--muted); margin-top:4px; }
+
+  form{ padding:20px 26px 18px; }
+  .row{ display:flex; gap:16px; flex-wrap:wrap; }
+  .field{ flex:1 1 240px; display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+  label{ font-size:13px; color:rgba(240,240,240,.78); font-weight:500; }
+
+  input, select, textarea{
+    background:#0f1113; color:var(--text);
+    border:1px solid var(--border); border-radius:12px;
+    padding:13px 14px; outline:none; font-size:14px;
+    transition:border-color .2s, box-shadow .2s, background .2s, transform .06s;
+  }
+  input:hover,select:hover,textarea:hover{ border-color:rgba(255,255,255,.12) }
+  input:focus,select:focus,textarea:focus{
+    border-color: var(--aqua-strong);
+    box-shadow: 0 0 0 3px rgba(126,224,247,.22);
+    background:#111317;
+  }
+  textarea{ min-height:110px; resize:vertical; }
+  input:active, select:active, textarea:active{ transform:scale(.998) }
+
+  .actions{ display:flex; align-items:center; gap:12px; margin-top:6px; }
+  button{
+    background:var(--aqua); color:#000; border:0; border-radius:14px;
+    padding:14px 22px; font-weight:600; cursor:pointer; font-size:15px;
+    box-shadow:
+      0 0 0 1px rgba(126,224,247,.25) inset,
+      0 0 16px rgba(126,224,247,.28);
+    transition: all .25s ease;
+  }
+  button:hover{ background:var(--aqua-strong); transform:translateY(-1px); box-shadow:0 0 26px rgba(126,224,247,.55) }
+  button:active{ transform:translateY(0); box-shadow:0 0 16px rgba(126,224,247,.35) }
+  button[disabled]{ opacity:.6; cursor:not-allowed }
+
+  .footer{ font-size:12px; color:var(--muted); padding:14px 26px 18px; border-top:1px solid var(--border) }
+
+  /* --- Decorative stickers (receipt, credit card, bill slip) --- */
+  .decor{ position:absolute; inset:0; pointer-events:none; z-index:1; }
+
+  /* Generic sticker base with aqua glow */
+  .sticker{
+    position:absolute;
+    border-radius:12px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.18);
+    color:rgba(255,255,255,.85);
+    filter: drop-shadow(0 14px 32px rgba(0,0,0,.5)) drop-shadow(0 0 18px rgba(126,224,247,.15));
+    box-shadow: inset 0 0 12px rgba(126,224,247,.08);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    overflow:hidden;
+  }
+
+  /* 1) Thermal receipt */
+  .receipt{
+    width:260px; height:190px;
+    background:
+      repeating-linear-gradient(180deg, rgba(255,255,255,.16) 0 1px, transparent 1px 26px),
+      rgba(255,255,255,.06);
+    border-radius:10px 10px 12px 12px;
+  }
+  /* serrated top */
+  .receipt::before{
+    content:"";
+    position:absolute; top:-10px; left:0; right:0; height:10px;
+    background:
+      radial-gradient(circle at 10px 10px, transparent 7px, rgba(255,255,255,.10) 7px) repeat-x;
+    background-size:20px 10px;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,.25));
+  }
+  /* header + totals text (fake) */
+  .receipt .inner{
+    position:absolute; inset:12px 12px 10px 12px; font-size:11px; color:rgba(245,245,245,.9);
+  }
+  .receipt .brand{ font-weight:600; letter-spacing:.4px; margin-bottom:6px; color:#eafaff; }
+  .receipt .rowline{ display:flex; justify-content:space-between; gap:8px; margin:6px 0; }
+  .receipt .total{ border-top:1px dashed rgba(255,255,255,.35); margin-top:8px; padding-top:8px; font-weight:600; }
+  /* tiny “bars/QR” */
+  .receipt .bars{
+    position:absolute; right:10px; bottom:10px; height:26px; width:90px;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,.65) 0 2px, transparent 2px 3px);
+    opacity:.6; border-radius:2px;
+  }
+
+  /* 2) Credit card */
+  .ccard{
+    width:280px; height:170px; border-radius:16px;
+    background:
+      linear-gradient(135deg, rgba(126,224,247,.18), rgba(255,255,255,.06)),
+      linear-gradient(180deg, rgba(255,255,255,.04), transparent 60%);
+    position:absolute;
+  }
+  /* magstripe */
+  .ccard::before{
+    content:"";
+    position:absolute; top:18px; left:0; right:0; height:34px;
+    background: linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.55));
+  }
+  /* hologram dots */
+  .ccard::after{
+    content:"";
+    position:absolute; right:16px; bottom:16px; width:44px; height:44px; border-radius:50%;
+    background: radial-gradient(circle at 30% 30%, rgba(126,224,247,.55), rgba(255,255,255,.08) 60%, transparent 61%),
+                radial-gradient(circle at 70% 70%, rgba(255,255,255,.35), transparent 62%);
+    filter: blur(.2px);
+  }
+  /* chip */
+  .chip{
+    position:absolute; top:64px; left:16px; width:40px; height:30px; border-radius:6px;
+    background:
+      linear-gradient(180deg, #b9d6de, #7ec0cf);
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.25);
+  }
+  .chip::before, .chip::after{
+    content:""; position:absolute; left:6px; right:6px; height:1px; background:rgba(0,0,0,.35);
+  }
+  .chip::before{ top:10px; } .chip::after{ top:18px; }
+  /* embossed numbers */
+  .digits{
+    position:absolute; top:106px; left:16px; right:16px; display:flex; gap:8px; font-weight:600; letter-spacing:2px;
+    color:rgba(245,255,255,.9); text-shadow: 0 1px 0 rgba(0,0,0,.7), 0 0 8px rgba(126,224,247,.25);
+    font-size:16px;
+  }
+  .brandtag{
+    position:absolute; top:70px; right:16px; font-size:11px; color:rgba(235,250,255,.9); letter-spacing:.5px;
+  }
+
+  /* 3) Bill slip */
+  .billslip{
+    width:220px; height:150px; border-radius:12px;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.12) 0 2px, transparent 2px 8px),
+      rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.20);
+  }
+  .billslip .lines{
+    position:absolute; inset:12px; font-size:11px; color:rgba(245,245,245,.95);
+  }
+  .billslip .dotted{ border-bottom:1px dotted rgba(255,255,255,.45); margin:8px 0 12px; height:14px; }
+  .billslip .sign{ margin-top:10px; border-top:1px solid rgba(255,255,255,.35); padding-top:8px; opacity:.85; }
+  .stamp{
+    position:absolute; transform:rotate(-12deg); top:12px; left:14px;
+    padding:5px 8px; font-size:10px; font-weight:700; letter-spacing:1px;
+    color:rgba(126,224,247,.95);
+    border:1px solid rgba(126,224,247,.6);
+    border-radius:4px;
+    box-shadow: 0 0 12px rgba(126,224,247,.35);
+    mix-blend-mode: screen;
+  }
+  .stamp::after{
+    content:"PAID"; 
+  }
+
+  /* “Tape” */
+  .tape{
+    position:absolute; height:16px; width:86px;
+    background:rgba(126,224,247,.22);
+    border:1px solid rgba(126,224,247,.45); border-radius:4px;
+    box-shadow:0 6px 18px rgba(0,0,0,.40), 0 0 16px rgba(126,224,247,.22);
+    transform:rotate(-11deg);
+  }
+  .tape.r{ transform:rotate(13deg) }
+
+  /* Asymmetric positions (spread out) */
+  .recA{ top:40px; left:clamp(6px, 8vw, 140px); transform:rotate(-6deg); }
+  .cardA{ bottom:84px; right:clamp(14px, 10vw, 200px); transform:rotate(7deg); }
+  .billA{ top:320px; left:clamp(10px, 12vw, 200px); transform:rotate(-3deg); }
+  .tapeA{ top:18px; left:clamp(160px, 20vw, 340px); }
+  .tapeB{ bottom:90px; right:clamp(80px, 14vw, 320px); }
+
+  /* Hover parallax (desktop only) */
+  @media (hover:hover) and (pointer:fine){
+    .sticker{ transition: transform .45s ease, filter .45s ease, opacity .3s ease; }
+    .sticker:hover{
+      transform: translateY(-2px) scale(1.01);
+      filter: drop-shadow(0 16px 36px rgba(0,0,0,.55)) drop-shadow(0 0 26px rgba(126,224,247,.22));
+    }
+  }
+
+  /* Hide decor on small screens */
+  @media (max-width: 900px){
+    .decor{ display:none; }
+    .wrap{ margin:28px auto; }
+  }
+
+  /* Toast */
+  .toast{
+    position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(10px);
+    background:#0f1113; color:#d9f7ff; border:1px solid rgba(126,224,247,.25);
+    border-radius:12px; padding:12px 16px; box-shadow:0 8px 30px rgba(0,0,0,.45), 0 0 20px rgba(126,224,247,.18);
+    font-size:14px; opacity:0; pointer-events:none; transition:opacity .2s ease, transform .2s ease; z-index:9999;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .toast b{ color:var(--aqua-strong); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none!important; transition:none!important }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <!-- realistic glowing stickers -->
+    <div class="decor">
+      <!-- Thermal receipt -->
+      <div class="sticker receipt recA">
+        <div class="inner">
+          <div class="brand">CLUB VEND</div>
+          <div class="rowline"><span>Vape – Ice Mint</span><span>$15.00</span></div>
+          <div class="rowline"><span>Tap Payment</span><span>**** 1234</span></div>
+          <div class="rowline"><span>Auth</span><span>#7F2A</span></div>
+          <div class="total rowline"><span>Total</span><span>$15.00</span></div>
+        </div>
+        <div class="bars"></div>
+      </div>
+
+      <!-- Credit card -->
+      <div class="sticker ccard cardA">
+        <div class="chip"></div>
+        <div class="digits">4520&nbsp;••••&nbsp;••••&nbsp;1234</div>
+        <div class="brandtag">NFC • SECURE</div>
+      </div>
+
+      <!-- Bill slip -->
+      <div class="sticker billslip billA">
+        <div class="stamp"></div>
+        <div class="lines">
+          <div>Refund Request</div>
+          <div class="dotted"></div>
+          <div>Approved by __________</div>
+          <div class="sign">Signature _____________________</div>
+        </div>
+      </div>
+
+      <div class="tape tapeA"></div>
+      <div class="tape r tapeB"></div>
+    </div>
+
+    <div class="wrap">
+      <div class="card">
+        <header>
+          <h1>Refund Request</h1>
+          <div class="sub">Please fill in the details so our team can issue your refund.</div>
+        </header>
+
+        <!-- posts to Google Forms silently via hidden iframe -->
+        <form id="refundForm"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSf05YE0dVvZ3d4Pv59eu5WwQF-ib_HjqdmToQcPcEMmzjAD1w/formResponse"
+              method="POST"
+              target="gform_iframe"
+              novalidate>
+          <iframe name="gform_iframe" style="display:none"></iframe>
+
+          <div class="field">
+            <label for="loc">Location</label>
+            <input id="loc" name="entry.550973786" placeholder="e.g., Club / venue name" required aria-required="true"/>
+          </div>
+
+          <div class="field">
+            <label for="issue">What went wrong?</label>
+            <select id="issue" name="entry.731792058" required aria-required="true">
+              <option value="">Select an issue…</option>
+              <option>Missed dispense</option>
+              <option>Jam / Misdrop</option>
+              <option>Duplicate charge</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="last4">Card last 4 digits</label>
+              <input id="last4" name="entry.1702138918" inputmode="numeric" pattern="\d{4}" maxlength="4" placeholder="1234" required aria-required="true"/>
+            </div>
+            <div class="field">
+              <label for="when">When did it happen?</label>
+              <select id="when" name="entry.2095614093">
+                <option>Just now</option>
+                <option>About 5 minutes ago</option>
+                <option>About 10 minutes ago</option>
+                <option>About 20 minutes ago</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="amount">Amount charged (optional)</label>
+              <input id="amount" name="entry.1542031007" inputmode="decimal" placeholder="e.g., 15.00" />
+            </div>
+            <div class="field">
+              <label for="contact">Contact (email or phone, optional)</label>
+              <input id="contact" name="entry.1794376017" placeholder="email or phone" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" name="entry.1538660776" placeholder="Any extra details that might help us find it…"></textarea>
+          </div>
+
+          <!-- required hidden inputs for Forms -->
+          <input type="hidden" name="fvv" value="1">
+          <input type="hidden" name="fbzx" value="">
+          <input type="hidden" name="pageHistory" value="0">
+
+          <div class="actions">
+            <button id="submitBtn" type="submit">Submit refund request</button>
+            <small id="helper" style="color:var(--muted)"></small>
+          </div>
+        </form>
+
+        <div class="footer">
+          We only collect what’s needed to process your refund. Never enter full card numbers.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- toast -->
+  <div id="toast" class="toast">✅ <b>Submitted.</b> We’ll review and issue your refund shortly.</div>
+
+  <!-- prefill + UX -->
+  <script>
+  (function(){
+    // Prefill Location from ?loc= in QR links
+    const qs = new URLSearchParams(location.search);
+    const loc = qs.get("loc");
+    if (loc) document.getElementById('loc').value = loc;
+
+    const form = document.getElementById('refundForm');
+    const btn  = document.getElementById('submitBtn');
+    const tip  = document.getElementById('helper');
+    const toast= document.getElementById('toast');
+
+    function showToast(){ toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'), 3000); }
+
+    form.addEventListener('submit', function(e){
+      const ok = document.getElementById('loc').value.trim()
+             && document.getElementById('issue').value.trim()
+             && /^\d{4}$/.test(document.getElementById('last4').value.trim());
+      if(!ok){
+        e.preventDefault();
+        tip.textContent = "Please fill Location, Issue, and Card last 4.";
+        return;
+      }
+      btn.disabled = true; btn.textContent = 'Submitting…'; tip.textContent = '';
+      setTimeout(()=>{
+        btn.disabled = false; btn.textContent = 'Submit refund request'; showToast();
+        const keepLoc = document.getElementById('loc').value;
+        form.reset(); document.getElementById('loc').value = keepLoc;
+      }, 1100);
+    });
+  })();
+  </script>
+</body>
+</html>
+

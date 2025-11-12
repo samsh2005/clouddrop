@@ -17,270 +17,288 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Background Stars -->
-  <div class="stars" id="stars"></div>
 
-  <!-- Hero Section -->
-  <section id="hero">
+<!-- Sticky glass nav -->
+<nav class="site-nav">
+  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:12px 5vw">
+    <a href="#hero" class="nav-brand">Cloud Drop</a>
+    <div style="display:flex;gap:18px;align-items:center">
+      <a href="#about">What we do</a>
+      <a href="#machine">Machines</a>
+      <a href="#contact" class="btn" style="padding:8px 16px">Book a call</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Background Stars -->
+<div class="stars" id="stars"></div>
+
+<!-- Floating Refund Help Button -->
+<a id="refund-help-btn" class="refund-help-btn" href="/refund.html">💬 Refund Help</a>
+
+<!-- Hero Section -->
+<section id="hero" class="reveal-up">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <img src="./assets/logo.png" alt="Cloud Drop Logo" class="logo hero-logo floating" loading="eager" decoding="async">
+    <h1 class="hero-title">Elevate Your Venue</h1>
+    <p class="hero-sub">Modern vending. Seamless experience. Passive revenue.</p>
+    <div class="cta-buttons">
+      <a href="#contact">Become a Partner</a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section (minimal, professional) -->
+<section id="about" class="reveal-up">
+  <div class="container">
+    <h2 class="section-title" style="text-align:center;margin-bottom:18px;">What We Do</h2>
+
+    <p class="about-lead">
+      We install and operate modern, automated vending for 19+ venues—so guests get fast self-serve access and you earn passive revenue without staff time.
+    </p>
+
+    <ul class="about-bullets">
+      <li><strong>Full-service:</strong> install, restocking, and maintenance handled by our team</li>
+      <li><strong>Cashless & compliant:</strong> Nayax terminals; built for 19+ environments</li>
+      <li><strong>Transparent payouts:</strong> clear revenue share with itemized statements</li>
+    </ul>
+
+   <div class="kpi-strip reveal-up" style="margin-top:20px">
+  <div>
+    <div class="kpi">💸</div>
+    <div class="kpi-sub"><strong>Passive revenue</strong><br>You earn on every vend — no staff required</div>
+  </div>
+  <div>
+    <div class="kpi">⏱</div>
+    <div class="kpi-sub"><strong>Quick setup</strong><br>Install in under 1 hour, plug-and-play ready</div>
+  </div>
+  <div>
+    <div class="kpi">💡</div>
+    <div class="kpi-sub"><strong>Full support</strong><br>We handle maintenance and refund processing</div>
+  </div>
+</div>
+
+</section>
+
+  <!-- Machine Section -->
+  <section id="machine" class="reveal-up">
     <div class="container">
-      <img src="./assets/logo.png" alt="Cloud Drop Logo" class="logo hero-logo floating">
-      <h1 class="hero-title">Elevate Your Venue</h1>
-      <p class="hero-sub">Modern vending. Seamless experience. Passive revenue.</p>
-      <div class="cta-buttons">
-        <a href="#contact">Become a Partner</a>
+      <h2 class="machine-title">Our Machines</h2>
+
+      <div class="machine-grid">
+        <!-- Current machine -->
+        <div class="machine-card">
+          <div class="machine-wrap">
+            <img src="./assets/vending.png" alt="Vending Machine" class="machine-img" loading="lazy" decoding="async">
+            <div class="dimension-label dim-h">H: 40.5"</div>
+            <div class="dimension-label dim-w">W: 23.6"</div>
+            <div class="dimension-label dim-d">D: 10.2"</div>
+          </div>
+          <p class="machine-caption">Installed now in partner venues.</p>
+        </div>
+
+        <!-- Coming soon machine -->
+        <div class="machine-card coming">
+          <span class="ribbon">Coming Soon</span>
+          <div class="coming-wrap">
+            <img src="./assets/coming-soon.png" alt="New machine silhouette" class="coming-img" loading="lazy" decoding="async">
+            <span class="shimmer"></span>
+          </div>
+          <p class="machine-caption">New model arriving next month. Want first access? <a href="#contact">Partner with us</a>.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
-<section id="about">
-  <div class="container">
-    <h2 style="text-align: center; margin-bottom: 34px;">What We Do</h2>
-
-    <div class="what-we-do-grid">
-      <div class="what-card">
-        <p><strong>Cloud Drop Vending</strong> brings sleek, wall-mounted vape vending machines to 19+ nightlife venues — helping clubs retain guests, drive revenue, and stay modern without staffing or shelf space.</p>
-      </div>
-
-      <div class="what-card">
-        <p>Each machine is futuristic and compact, blending perfectly into high-energy environments and designed for quick, convenient access. Because age verification happens at the door, our machines are streamlined for high-flow use.</p>
-      </div>
-
-      <div class="what-card">
-        <ul>
-          <li>🔧 Full setup, restocking, and maintenance</li>
-          <li>💸 10% passive revenue to your venue</li>
-          <li>🛠 Zero labor required from staff</li>
-          <li>🚀 A seamless upgrade to your club’s experience</li>
-        </ul>
-      </div>
-    </div>
-
-  
-    <!-- callout keeps your short sentence but makes layout feel intentional -->
-    <div class="what-callout">
-      We handle everything — you collect your cut.
-    </div>
-  </div>
-</section>
-  <!-- Machine Section -->
- <section id="machine">
-  <div class="container">
-    <h2 class="machine-title">Our Machines</h2>
-
-    <div class="machine-grid">
-      <!-- Current machine (your existing content) -->
-      <div class="machine-card">
-        <div class="machine-wrap">
-          <img src="./assets/vending.png" alt="Vending Machine" class="machine-img">
-          <div class="dimension-label dim-h">H: 40.5"</div>
-          <div class="dimension-label dim-w">W: 23.6"</div>
-          <div class="dimension-label dim-d">D: 10.2"</div>
-        </div>
-        <p class="machine-caption">Installed now in partner venues.</p>
-      </div>
-
-      <!-- Coming soon machine -->
-      <div class="machine-card coming">
-        <span class="ribbon">Coming Soon</span>
-        <div class="coming-wrap">
-          <!-- If you have a silhouette/placeholder, put it here -->
-          <img src="./assets/coming-soon.png" alt="New machine silhouette" class="coming-img">
-          <span class="shimmer"></span>
-        </div>
-        <p class="machine-caption">New model arriving next month. Want first access? <a href="#contact">Partner with us</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
   <!-- Now Live Section -->
-<section id="live">
-  <div class="container">
-    <div class="live-header">
-      <h2>Now Live at <span class="live-spot">Cabana Nightclub</span></h2>
-      <span class="live-badge">LIVE</span>
-    </div>
-    <p class="live-sub">
-      Our first Cloud Drop machine is officially installed and serving guests.
-    </p>
+  <section id="live" class="reveal-up">
+    <div class="container">
+      <div class="live-header">
+        <h2>Now Live at <span class="live-spot">Cabana Nightclub</span></h2>
+        <span class="live-badge">LIVE</span>
+      </div>
+      <p class="live-sub">
+        Our first Cloud Drop machine is officially installed and serving guests.
+      </p>
 
-    <div class="live-gallery">
-      <!-- Replace src with your real photos in /assets -->
-      <figure class="live-photo">
-        <img src="./assets/live1.JPEG" alt="Cloud Drop machine at the club - angle 1">
-        <figcaption>Install day</figcaption>
-      </figure>
-      <figure class="live-photo">
-        <img src="./assets/live2.JPEG" alt="Cloud Drop machine at the club - angle 2">
-        <figcaption>In the wild</figcaption>
-      </figure>
-      <figure class="live-photo">
-        <img src="./assets/live3.JPEG" alt="Cloud Drop machine at the club - close up">
-        <figcaption>Ready to vend</figcaption>
-      </figure>
+      <div class="live-gallery">
+        <figure class="live-photo">
+          <img src="./assets/live1.JPEG" alt="Cloud Drop machine at the club - angle 1" loading="lazy" decoding="async">
+          <figcaption>Install day</figcaption>
+        </figure>
+        <figure class="live-photo">
+          <img src="./assets/live2.JPEG" alt="Cloud Drop machine at the club - angle 2" loading="lazy" decoding="async">
+          <figcaption>In the wild</figcaption>
+        </figure>
+        <figure class="live-photo">
+          <img src="./assets/live3.JPEG" alt="Cloud Drop machine at the club - close up" loading="lazy" decoding="async">
+          <figcaption>Ready to vend</figcaption>
+        </figure>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Contact Section -->
- <section id="contact">
-  <div class="container">
-    <h2>Partner With Us</h2>
-    <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
+  <section id="contact" class="reveal-up">
+    <div class="container">
+      <h2>Partner With Us</h2>
+      <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
 
-    <form id="contact-form" action="https://formspree.io/f/xkgvybdb" method="POST">
-  <input type="text" name="name" placeholder="Your Name" required />
-  <input type="text" name="venue" placeholder="Club or Venue Name" required />
-  <input type="email" name="email" placeholder="Email Address" required />
-  <input type="tel" name="phone" placeholder="Phone (optional)" />
-  <textarea name="message" placeholder="Message or Questions (optional)" rows="5"></textarea>
+      <form id="contact-form" action="https://formspree.io/f/xkgvybdb" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="text" name="venue" placeholder="Club or Venue Name" required />
+        <input type="email" name="email" placeholder="Email Address" required />
+        <input type="tel" name="phone" placeholder="Phone (optional)" />
+        <textarea name="message" placeholder="Message or Questions (optional)" rows="5"></textarea>
 
-  <!-- helpful meta fields -->
-  <input type="hidden" name="form" value="CloudDrop Contact" />
-  <input type="hidden" name="_subject" value="New message from Cloud Drop site" />
+        <!-- helpful meta fields -->
+        <input type="hidden" name="form" value="CloudDrop Contact" />
+        <input type="hidden" name="_subject" value="New message from Cloud Drop site" />
 
-  <!-- anti-spam honeypot (humans leave this empty) -->
-  <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+        <!-- anti-spam honeypot (humans leave this empty) -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
 
-  <button type="submit">Submit</button>
-  <div id="form-status" aria-live="polite" style="margin-top:12px;"></div>
-</form>
-  </div>
-</section>
-<!-- For Venues button -->
-<div style="text-align:center; margin: 30px 0;">
-  <button id="open-venue-gate" class="btn-venue">For Venues</button>
-</div>
-
-<!-- Simple modal gate -->
-<div id="venue-gate" class="modal hidden" aria-hidden="true">
-  <div class="modal-backdrop"></div>
-  <div class="modal-card">
-    <h3 style="margin:0 0 10px;">Partner Access</h3>
-    <p style="margin:0 0 12px; color:#cfd8dd;">Enter the access code provided by Cloud Drop.</p>
-    <input id="venue-pin" type="password" placeholder="Access code" class="modal-input" />
-    <div id="venue-msg" class="modal-msg"></div>
-    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px;">
-      <button id="cancel-venue" class="modal-btn">Cancel</button>
-      <button id="submit-venue" class="modal-btn primary">Unlock</button>
-    </div>
-  </div>
-</div>
-
-<!-- Partner Agreement (E-Contract) -->
-<section id="contract" class="contract-locked" style="scroll-margin-top:80px">
-  <div class="container">
-
-    <!-- Contract Card -->
-    <div class="contract-card">
-      <header class="contract-header">
-        <div class="contract-brand">
-          <img src="./assets/logo.png" alt="Cloud Drop" class="contract-logo">
-          <div>
-            <h2 class="contract-title">Partner Agreement</h2>
-            <p class="contract-subtitle">Cloud Drop Vending</p>
-          </div>
-        </div>
-        <div class="contract-meta">
-          <div><span>Effective Date:</span> <strong id="contract-date"></strong></div>
-          <div><span>Agreement No.:</span> <strong>CDV-<span id="contract-id">AUTO</span></strong></div>
-        </div>
-      </header>
-
-      <!-- Parties + Inputs -->
-      <form id="contract-form" class="contract-form">
-        <div class="contract-grid">
-          <label class="field">
-            <span>Venue / Club Name</span>
-            <input type="text" name="venue" placeholder="Venue / Club name" required data-bind="#prev-venue">
-          </label>
-          <label class="field">
-            <span>Manager / Owner</span>
-            <input type="text" name="manager" placeholder="Manager / Owner name" required data-bind="#prev-manager">
-          </label>
-          <label class="field">
-            <span>Email</span>
-            <input type="email" name="email" placeholder="Email" required data-bind="#prev-email">
-          </label>
-          <label class="field">
-            <span>Phone (optional)</span>
-            <input type="tel" name="phone" placeholder="Phone (optional)" data-bind="#prev-phone">
-          </label>
-        </div>
-
-        <label class="field">
-          <span>Notes (optional)</span>
-          <textarea name="notes" placeholder="Notes (optional)" rows="3" data-bind="#prev-notes"></textarea>
-        </label>
-
-        <!-- Contract Body / Clauses -->
-        <article class="contract-body">
-          <h3>Agreement Summary</h3>
-          <p>
-            This Partner Agreement (“Agreement”) is between <strong>Cloud Drop Vending</strong> (“Provider”) and
-            <strong><span id="prev-venue" class="bind-fallback">[Venue]</span></strong> (“Venue”),
-            represented by <strong><span id="prev-manager" class="bind-fallback">[Manager]</span></strong>.
-            Contact: <span id="prev-email" class="bind-fallback">[Email]</span>
-            <span id="prev-phone-wrap"> | <span id="prev-phone" class="bind-fallback">[Phone]</span></span>.
-          </p>
-
-          <h3>Terms</h3>
-          <ol class="contract-clauses">
-            <li><strong>Install & Maintenance.</strong> Provider installs, maintains, and restocks the vending machine(s) at the Venue’s location.</li>
-            <li><strong>Revenue Share.</strong> Venue receives a 10% share of net machine revenue, paid on a periodic basis agreed during onboarding.</li>
-            <li><strong>Compliance.</strong> Venue confirms age verification is handled at entry; machine placement complies with local laws.</li>
-            <li><strong>Term & Termination.</strong> Either party may terminate with 14 days’ written notice; machine(s) will be removed by Provider.</li>
-            <li><strong>Liability.</strong> Provider carries responsibility for machine hardware; Venue provides standard access and safe placement.</li>
-            <li><strong>Data.</strong> Sales and uptime data may be accessed via Cloud Drop’s portal by authorized Venue users.</li>
-          </ol>
-
-          <p class="contract-note">Any additional terms documented during onboarding are incorporated by reference.</p>
-        </article>
-
-        <!-- Acknowledgement -->
-        <label class="agree-row">
-          <input type="checkbox" name="agree" required>
-          <span>I have read and agree to the terms above on behalf of the Venue.</span>
-        </label>
-
-        <!-- Signature Area -->
-        <div class="signature-block">
-          <div class="sig-pad-wrap">
-            <p class="sig-label">Signature (Venue Representative)</p>
-            <div class="sig-pad">
-              <canvas id="sigPad" width="700" height="180"></canvas>
-            </div>
-            <div class="sig-actions">
-              <button type="button" id="clearSig" class="btn ghost">Clear</button>
-              <button type="button" id="printContract" class="btn ghost">Print / Save PDF</button>
-            </div>
-          </div>
-          <div class="sig-lines">
-            <div class="sig-line">
-              <span class="line"></span>
-              <label>Signed by (print name): <span id="prev-manager-2" class="bind-fallback">[Manager]</span></label>
-            </div>
-            <div class="sig-line">
-              <span class="line"></span>
-              <label>Date: <span id="contract-date-2"></span></label>
-            </div>
-          </div>
-        </div>
-
-        <div class="submit-row">
-          <button type="submit" class="btn primary">Sign & Submit</button>
-          <div id="contract-status" aria-live="polite" class="status"></div>
-        </div>
+        <button type="submit">Submit</button>
+        <div id="form-status" aria-live="polite" style="margin-top:12px;"></div>
       </form>
     </div>
+  </section>
 
+  <!-- For Venues button -->
+  <div style="text-align:center; margin: 30px 0;" class="reveal-up">
+    <button id="open-venue-gate" class="btn-venue">For Venues</button>
   </div>
-</section>
+
+  <!-- Simple modal gate -->
+  <div id="venue-gate" class="modal hidden" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-card">
+      <h3 style="margin:0 0 10px;">Partner Access</h3>
+      <p style="margin:0 0 12px; color:#cfd8dd;">Enter the access code provided by Cloud Drop.</p>
+      <input id="venue-pin" type="password" placeholder="Access code" class="modal-input" />
+      <div id="venue-msg" class="modal-msg"></div>
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px;">
+        <button id="cancel-venue" class="modal-btn">Cancel</button>
+        <button id="submit-venue" class="modal-btn primary">Unlock</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Partner Agreement (E-Contract) -->
+  <section id="contract" class="contract-locked" style="scroll-margin-top:80px">
+    <div class="container">
+
+      <!-- Contract Card -->
+      <div class="contract-card">
+        <header class="contract-header">
+          <div class="contract-brand">
+            <img src="./assets/logo.png" alt="Cloud Drop" class="contract-logo">
+            <div>
+              <h2 class="contract-title">Partner Agreement</h2>
+              <p class="contract-subtitle">Cloud Drop Vending</p>
+            </div>
+          </div>
+          <div class="contract-meta">
+            <div><span>Effective Date:</span> <strong id="contract-date"></strong></div>
+            <div><span>Agreement No.:</span> <strong>CDV-<span id="contract-id">AUTO</span></strong></div>
+          </div>
+        </header>
+
+        <!-- Parties + Inputs -->
+        <form id="contract-form" class="contract-form">
+          <div class="contract-grid">
+            <label class="field">
+              <span>Venue / Club Name</span>
+              <input type="text" name="venue" placeholder="Venue / Club name" required data-bind="#prev-venue">
+            </label>
+            <label class="field">
+              <span>Manager / Owner</span>
+              <input type="text" name="manager" placeholder="Manager / Owner name" required data-bind="#prev-manager">
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" placeholder="Email" required data-bind="#prev-email">
+            </label>
+            <label class="field">
+              <span>Phone (optional)</span>
+              <input type="tel" name="phone" placeholder="Phone (optional)" data-bind="#prev-phone">
+            </label>
+          </div>
+
+          <label class="field">
+            <span>Notes (optional)</span>
+            <textarea name="notes" placeholder="Notes (optional)" rows="3" data-bind="#prev-notes"></textarea>
+          </label>
+
+          <!-- Contract Body / Clauses -->
+          <article class="contract-body">
+            <h3>Agreement Summary</h3>
+            <p>
+              This Partner Agreement (“Agreement”) is between <strong>Cloud Drop Vending</strong> (“Provider”) and
+              <strong><span id="prev-venue" class="bind-fallback">[Venue]</span></strong> (“Venue”),
+              represented by <strong><span id="prev-manager" class="bind-fallback">[Manager]</span></strong>.
+              Contact: <span id="prev-email" class="bind-fallback">[Email]</span>
+              <span id="prev-phone-wrap"> | <span id="prev-phone" class="bind-fallback">[Phone]</span></span>.
+            </p>
+
+            <h3>Terms</h3>
+            <ol class="contract-clauses">
+              <li><strong>Install & Maintenance.</strong> Provider installs, maintains, and restocks the vending machine(s) at the Venue’s location.</li>
+              <li><strong>Revenue Share.</strong> Venue receives a 10% share of net machine revenue, paid on a periodic basis agreed during onboarding.</li>
+              <li><strong>Compliance.</strong> Venue confirms age verification is handled at entry; machine placement complies with local laws.</li>
+              <li><strong>Term & Termination.</strong> Either party may terminate with 14 days’ written notice; machine(s) will be removed by Provider.</li>
+              <li><strong>Liability.</strong> Provider carries responsibility for machine hardware; Venue provides standard access and safe placement.</li>
+              <li><strong>Data.</strong> Sales and uptime data may be accessed via Cloud Drop’s portal by authorized Venue users.</li>
+            </ol>
+
+            <p class="contract-note">Any additional terms documented during onboarding are incorporated by reference.</p>
+          </article>
+
+          <!-- Acknowledgement -->
+          <label class="agree-row">
+            <input type="checkbox" name="agree" required>
+            <span>I have read and agree to the terms above on behalf of the Venue.</span>
+          </label>
+
+          <!-- Signature Area -->
+          <div class="signature-block">
+            <div class="sig-pad-wrap">
+              <p class="sig-label">Signature (Venue Representative)</p>
+              <div class="sig-pad">
+                <canvas id="sigPad" width="700" height="180"></canvas>
+              </div>
+              <div class="sig-actions">
+                <button type="button" id="clearSig" class="btn ghost">Clear</button>
+                <button type="button" id="printContract" class="btn ghost">Print / Save PDF</button>
+              </div>
+            </div>
+            <div class="sig-lines">
+              <div class="sig-line">
+                <span class="line"></span>
+                <label>Signed by (print name): <span id="prev-manager-2" class="bind-fallback">[Manager]</span></label>
+              </div>
+              <div class="sig-line">
+                <span class="line"></span>
+                <label>Date: <span id="contract-date-2"></span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn primary">Sign & Submit</button>
+            <div id="contract-status" aria-live="polite" class="status"></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <p>Cloud Drop Vending © 2025. All rights reserved.</p>
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Vendor JS -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <!-- Your JS -->
