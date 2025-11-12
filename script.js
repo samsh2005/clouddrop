@@ -369,3 +369,22 @@ if (refundBtn) {
     btn.disabled = true;
   });
 })();
+// Mobile nav toggle
+(function(){
+  const nav = document.querySelector('.site-nav');
+  const toggle = document.querySelector('.nav-toggle');
+  const menu = document.getElementById('nav-menu');
+  if (!nav || !toggle || !menu) return;
+
+  const setOpen = (open) => {
+    nav.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : ''; // prevent body scroll under menu
+  };
+
+  toggle.addEventListener('click', () => setOpen(!nav.classList.contains('open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+  // close on ESC
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+})();

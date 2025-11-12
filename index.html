@@ -19,16 +19,24 @@
 <body>
 
 <!-- Sticky glass nav -->
-<nav class="site-nav">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:12px 5vw">
+<nav class="site-nav" role="navigation">
+  <div class="container nav-inner">
     <a href="#hero" class="nav-brand">Cloud Drop</a>
-    <div style="display:flex;gap:18px;align-items:center">
+
+    <!-- hamburger -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Menu">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </button>
+
+    <!-- links -->
+    <div id="nav-menu" class="nav-links">
       <a href="#about">What we do</a>
       <a href="#machine">Machines</a>
-      <a href="#contact" class="btn" style="padding:8px 16px">Book a call</a>
+      <a href="#contact" class="btn">Book a call</a>
     </div>
   </div>
 </nav>
+
 
 <!-- Background Stars -->
 <div class="stars" id="stars"></div>
@@ -37,7 +45,7 @@
 <a id="refund-help-btn" class="refund-help-btn" href="/refund.html">💬 Refund Help</a>
 
 <!-- Hero Section -->
-<section id="hero" class="reveal-up">
+<section id="hero" data-aos="fade-up" data-aos-duration="1000">
   <div class="hero-bg"></div>
   <div class="container">
     <img src="./assets/logo.png" alt="Cloud Drop Logo" class="logo hero-logo floating" loading="eager" decoding="async">
@@ -50,7 +58,7 @@
 </section>
 
 <!-- About Section (minimal, professional) -->
-<section id="about" class="reveal-up">
+<section id="about" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
   <div class="container">
     <h2 class="section-title" style="text-align:center;margin-bottom:18px;">What We Do</h2>
 
@@ -82,7 +90,7 @@
 </section>
 
   <!-- Machine Section -->
-  <section id="machine" class="reveal-up">
+<section id="machine" data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="200">
     <div class="container">
       <h2 class="machine-title">Our Machines</h2>
 
@@ -112,7 +120,7 @@
   </section>
 
   <!-- Now Live Section -->
-  <section id="live" class="reveal-up">
+<section id="live" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
     <div class="container">
       <div class="live-header">
         <h2>Now Live at <span class="live-spot">Cabana Nightclub</span></h2>
@@ -140,7 +148,7 @@
   </section>
 
   <!-- Contact Section -->
-  <section id="contact" class="reveal-up">
+  <section id="contact" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
     <div class="container">
       <h2>Partner With Us</h2>
       <p>If you manage or own a 19+ venue and want to bring Cloud Drop to your space, fill out the form below and we'll get in touch with you personally.</p>
@@ -303,5 +311,13 @@
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <!-- Your JS -->
   <script src="script.js" defer></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true, // play once per element
+    duration: 800, // default animation time
+    easing: 'ease-out-quart', // smooth motion
+  });
+</script>
 </body>
 </html>

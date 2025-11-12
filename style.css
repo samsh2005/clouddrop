@@ -636,5 +636,253 @@ footer{
   color: #c7d6de;
   line-height: 1.5;
 }
+/* ===== iPhone/mobile polish ===== */
+
+/* Reduce heavy glows on small screens (less halo + better FPS) */
+@media (max-width: 720px){
+  .hero-title{ text-shadow: 0 0 10px rgba(126,224,247,.18); }
+  .what-card,
+  .machine-card,
+  .contract-card{ box-shadow: 0 8px 18px rgba(0,0,0,.35), 0 0 10px rgba(126,224,247,.12); }
+  .live-photo{ padding:10px; }
+}
+
+/* Typography + spacing scale */
+@media (max-width: 720px){
+  h1{ font-size: clamp(1.9rem, 7vw, 2.4rem); }
+  h2{ font-size: clamp(1.25rem, 4.8vw, 1.6rem); }
+  .hero-sub{ font-size: 1rem; max-width: 64ch; }
+  section{ padding: 42px 5vw; }
+}
+
+/* Nav wordmark + links */
+@media (max-width: 720px){
+  .nav-brand{ font-size: 1.3rem; }
+  .site-nav .btn{ padding: 8px 14px !important; }
+}
+
+/* About bullets -> single column */
+@media (max-width: 900px){
+  .about-bullets{ grid-template-columns: 1fr; max-width: 520px; }
+}
+
+/* KPI strip: 2 cols on phones */
+@media (max-width: 720px){
+  .kpi-strip{ grid-template-columns: 1fr 1fr; gap: 16px; }
+}
+@media (max-width: 420px){
+  .kpi-strip{ grid-template-columns: 1fr; }
+}
+
+/* Machines grid: one column */
+@media (max-width: 900px){
+  .machine-grid{ grid-template-columns: 1fr; }
+}
+
+/* Live gallery images: 3:4 on small screens (you already set this; reinforce) */
+@media (max-width: 560px){
+  .live-photo img{ aspect-ratio: 3/4; }
+}
+
+/* Contact form: stack inputs */
+@media (max-width: 720px){
+  #contact-form{ grid-template-columns: 1fr; }
+  #contact-form textarea,
+  #contact-form button{ grid-column: 1 / 2; }
+}
+
+/* Floating refund button: avoid the iPhone home indicator and keyboard */
+:root{
+  /* Safe area insets for iPhone notch/home bar */
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+}
+.refund-help-btn{
+  right: calc(20px + var(--safe-r));
+  bottom: calc(20px + var(--safe-b));
+}
+@media (max-width: 480px){
+  .refund-help-btn{ padding: 12px 18px; font-size: 15px; }
+}
+
+/* Tap targets + iOS quirks */
+a, button, .btn, .btn-venue{ min-height: 44px; }
+input, textarea, select{ font-size: 16px; } /* prevent iOS zoom-on-focus */
+input, textarea, select{
+  -webkit-appearance: none;  /* Safari/iOS */
+  appearance: none;          /* standard */
+}
+/* Smooth scrolling + reduce tap highlight */
+html{ -webkit-tap-highlight-color: transparent; }
+/* ===== Responsive glass nav ===== */
+:root{
+  --nav-bg: rgba(14,14,16,.55);
+  --nav-line: rgba(255,255,255,.06);
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+}
+
+.site-nav{
+  position: sticky; top: 0; z-index: 10000;
+  backdrop-filter: blur(8px);
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-line);
+}
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding: calc(10px + var(--safe-t)) max(5vw, 20px) 10px max(5vw, 20px);
+}
+
+/* links row (desktop) */
+.nav-links{ display:flex; align-items:center; gap:18px; }
+
+/* hamburger button */
+.nav-toggle{
+  display:none; /* hidden on desktop */
+  width:40px; height:40px; border:none; background:transparent; cursor:pointer;
+  border-radius:10px; position:relative;
+}
+.nav-toggle:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(126,224,247,.25); }
+.nav-toggle .bar{
+  position:absolute; left:9px; right:9px; height:2px; background:var(--brand,#7ee0f7);
+  border-radius:2px; transition:transform .22s ease, opacity .22s ease;
+}
+.nav-toggle .bar:nth-child(1){ top:12px; }
+.nav-toggle .bar:nth-child(2){ top:19px; }
+.nav-toggle .bar:nth-child(3){ top:26px; }
+
+/* transform to X when open */
+.site-nav.open .nav-toggle .bar:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.site-nav.open .nav-toggle .bar:nth-child(2){ opacity:0; }
+.site-nav.open .nav-toggle .bar:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+
+/* mobile layout */
+@media (max-width: 820px){
+  .nav-toggle{ display:inline-flex; align-items:center; justify-content:center; }
+  .nav-links{
+    position: fixed; left:0; right:0; top: calc(56px + var(--safe-t));
+    background: rgba(14,14,16,.96); backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--nav-line);
+    display: grid; gap:12px;
+    padding: 14px 20px calc(14px + var(--safe-b));
+    transform: translateY(-12px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease;
+  }
+  .nav-links a{ padding:12px; border:1px solid var(--line); border-radius:12px; }
+  .site-nav.open .nav-links{ opacity:1; transform: translateY(0); pointer-events:auto; }
+
+  /* keep wordmark readable */
+  .nav-brand{ font-size: 1.3rem; }
+}
+
+/* ensure nav sits above refund button; optionally hide button while menu open */
+.site-nav.open ~ .refund-help-btn{ display:none; }
+/* ===== Nav: desktop fixes ===== */
+.site-nav{
+  position: sticky; top:0; z-index:10000;
+  backdrop-filter: blur(8px);
+  background: rgba(14,14,16,.55);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
+  height:64px;               /* consistent bar height */
+  padding: 0 max(5vw,20px);  /* even vertical centering */
+}
+
+/* Brand tone down on desktop */
+.nav-brand{
+  font-weight:800; letter-spacing:.4px; line-height:1;
+  text-shadow: 0 0 10px rgba(126,224,247,.28); /* subtler glow */
+}
+
+/* Desktop layout forces */
+@media (min-width: 821px){
+  .nav-toggle{ display:none !important; }
+
+  .nav-links{
+    position: static !important;
+    display: flex !important;
+    align-items: center;
+    gap: 18px;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  .nav-links a{
+    padding: 10px 12px;
+    border-radius: 10px;
+    color: #eaf6ff;
+    border: 1px solid transparent;
+    transition: background .2s ease, border-color .2s ease, transform .15s ease;
+  }
+  .nav-links a:hover{
+    background: rgba(126,224,247,.10);
+    border-color: rgba(126,224,247,.25);
+    transform: translateY(-1px);
+  }
+
+  /* keep the CTA consistent */
+  .nav-links .btn{
+    padding: 8px 16px;
+    border-radius: 999px;
+    border:1px solid var(--brand,#7ee0f7);
+  }
+}
+
+/* Mobile dropdown stays the same (<=820px). Ensure open state doesn’t leak to desktop */
+@media (min-width: 821px){
+  .site-nav.open { /* noop on desktop */ }
+}
+
+
+/* Prevent layout shift from safe-area vars on desktop */
+@media (min-width: 821px){
+  :root{
+    --safe-t: 0px;
+    --safe-b: 0px;
+    --safe-l: 0px;
+    --safe-r: 0px;
+  }
+}
+/* Center the brand name vertically in nav */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  backdrop-filter: blur(8px);
+  background: rgba(14, 14, 16, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;          /* <-- keeps brand vertically centered */
+  justify-content: space-between;
+  height: 70px;                 /* slightly taller nav bar for balance */
+  padding: 0 max(5vw, 24px);    /* balanced side padding */
+}
+
+.nav-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #eaf6ff;
+  letter-spacing: 0.4px;
+  text-shadow: 0 0 10px rgba(126, 224, 247, 0.3);
+  display: flex;
+  align-items: center;          /* centers text if logo ever added later */
+}
+.site-nav {
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
 
 
